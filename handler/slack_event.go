@@ -42,7 +42,15 @@ func HandleSlackEvents(ctx context.Context, client *socketmode.Client) {
 					continue
 				}
 				fmt.Printf("【スタンプ削除】ユーザー: %s | スタンプ: :%s: | 対象メッセージTS: %s\n", ev.User, ev.Reaction, ev.Item.Timestamp)
+
+			case "member_joined_channel": // チャンネルにユーザーが参加したイベント
+				ev, ok := eventsAPIEvent.InnerEvent.Data.(*slackevents.MemberJoinedChannelEvent)
+				if !ok {
+					continue
+				}
+				fmt.Printf("【ユーザー参加】ユーザー: %s | チャンネル: %s\n", ev.User, ev.Channel)
 			}
+
 		}
 	}
 }
