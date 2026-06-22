@@ -49,6 +49,13 @@ func HandleSlackEvents(ctx context.Context, client *socketmode.Client) {
 					continue
 				}
 				fmt.Printf("【ユーザー参加】ユーザー: %s | チャンネル: %s\n", ev.User, ev.Channel)
+
+			case "member_left_channel": // チャンネルからユーザーが退出したイベント
+				ev, ok := eventsAPIEvent.InnerEvent.Data.(*slackevents.MemberLeftChannelEvent)
+				if !ok {
+					continue
+				}
+				fmt.Printf("【ユーザー退出】ユーザー: %s | チャンネル: %s\n", ev.User, ev.Channel)
 			}
 
 		}

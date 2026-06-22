@@ -34,6 +34,7 @@ func main() {
 	// ルーティング登録
 	http.HandleFunc("/send-message", handler.HandlePostMessage(api, channelID))
 	http.HandleFunc("/get-members", handler.HandleGetMembers(api, channelID))
+	http.HandleFunc("/get-channel-info", handler.HandleGetChannelInfo(api, channelID))
 	http.HandleFunc("/send-ephemeral", handler.HandlePostEphemeral(api, channelID))
 	http.HandleFunc("/get-emojis", handler.HandleGetEmojiList(api))
 	http.HandleFunc("/send-message-with-stamp", handler.HandlePostMessageWithStamp(api, channelID))
