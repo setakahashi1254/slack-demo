@@ -34,14 +34,14 @@ func HandleSlackEvents(ctx context.Context, client *socketmode.Client) {
 				if !ok {
 					continue
 				}
-				fmt.Printf("【スタンプ追加】ユーザー: %s | スタンプ: :%s: | 対象メッセージTS: %s\n", ev.User, ev.Reaction, ev.Item.Timestamp)
+				fmt.Printf("【スタンプ追加】ユーザー: %s | チャンネル: %s | スタンプ: :%s: | 打刻時間: %s | 対象メッセージTS: %s\n", ev.User, ev.Item.Channel, ev.Reaction, ev.EventTimestamp, ev.Item.Timestamp)
 
 			case "reaction_removed": // スタンプが消されたイベント
 				ev, ok := eventsAPIEvent.InnerEvent.Data.(*slackevents.ReactionRemovedEvent)
 				if !ok {
 					continue
 				}
-				fmt.Printf("【スタンプ削除】ユーザー: %s | スタンプ: :%s: | 対象メッセージTS: %s\n", ev.User, ev.Reaction, ev.Item.Timestamp)
+				fmt.Printf("【スタンプ削除】ユーザー: %s | チャンネル: %s | スタンプ: :%s: | 打刻時間: %s | 対象メッセージTS: %s\n", ev.User, ev.Item.Channel, ev.Reaction, ev.EventTimestamp, ev.Item.Timestamp)
 
 			case "member_joined_channel": // チャンネルにユーザーが参加したイベント
 				ev, ok := eventsAPIEvent.InnerEvent.Data.(*slackevents.MemberJoinedChannelEvent)
