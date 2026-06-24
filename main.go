@@ -20,6 +20,9 @@ func main() {
 	// 環境変数からチャンネルIDを取得
 	channelID := os.Getenv("CHANNEL_ID") // C...
 
+	// 環境変数からメンバーIDを取得
+	memberID := os.Getenv("MEMBER_ID") // U...
+
 	if botToken == "" || appToken == "" {
 		log.Fatal("SLACK_BOT_TOKEN と SLACK_APP_TOKEN を設定してください")
 	}
@@ -35,6 +38,7 @@ func main() {
 	http.HandleFunc("/send-message", handler.HandlePostMessage(api, channelID))
 	http.HandleFunc("/get-members", handler.HandleGetMembers(api, channelID))
 	http.HandleFunc("/get-channel-info", handler.HandleGetChannelInfo(api, channelID))
+	http.HandleFunc("/get-user-info", handler.HandleGetUserInfo(api, memberID))
 	http.HandleFunc("/send-ephemeral", handler.HandlePostEphemeral(api, channelID))
 	http.HandleFunc("/get-emojis", handler.HandleGetEmojiList(api))
 	http.HandleFunc("/send-message-with-stamp", handler.HandlePostMessageWithStamp(api, channelID))
