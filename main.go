@@ -35,13 +35,13 @@ func main() {
 	client := socketmode.New(api)
 
 	// ルーティング登録
-	http.HandleFunc("/send-message", handler.HandlePostMessage(api, channelID))
-	http.HandleFunc("/get-members", handler.HandleGetMembers(api, channelID))
-	http.HandleFunc("/get-channel-info", handler.HandleGetChannelInfo(api, channelID))
-	http.HandleFunc("/get-user-info", handler.HandleGetUserInfo(api, memberID))
-	http.HandleFunc("/send-ephemeral", handler.HandlePostEphemeral(api, channelID))
-	http.HandleFunc("/get-emojis", handler.HandleGetEmojiList(api))
-	http.HandleFunc("/send-message-with-stamp", handler.HandlePostMessageWithStamp(api, channelID))
+	http.HandleFunc("/message", handler.HandlePostMessage(api, channelID))
+	http.HandleFunc("/members", handler.HandleGetMembers(api, channelID))
+	http.HandleFunc("/channel-info", handler.HandleGetChannelInfo(api, channelID))
+	http.HandleFunc("/user-info", handler.HandleGetUserInfo(api, memberID))
+	http.HandleFunc("/ephemeral", handler.HandlePostEphemeral(api, channelID))
+	http.HandleFunc("/emojis", handler.HandleGetEmojiList(api))
+	http.HandleFunc("/message-with-stamp", handler.HandlePostMessageWithStamp(api, channelID))
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
